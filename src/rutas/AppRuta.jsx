@@ -5,6 +5,52 @@ import Login          from '../paginas/Login';
 import Reportes       from '../paginas/Reportes';
 import ReporteFiltros from '../paginas/ReporteFiltros';
 import Perfil         from '../paginas/Perfil';
+import MainLayout     from '../componentes/MainLayout';
+
+const AppRuta = () => {
+ 
+  const [usuarioActivo, setUsuarioActivo] = useState(null);
+
+
+  if (!usuarioActivo) {
+    return <Login onLogin={(u) => setUsuarioActivo(u)} />;
+  }
+
+  return (
+    <BrowserRouter>
+      <MainLayout
+        usuario={usuarioActivo.nombre}
+        rol={usuarioActivo.rol}
+        onLogout={() => setUsuarioActivo(null)}
+      >
+        <Routes>
+          <Route path="/"               element={<Navigate to="/reportes" />} />
+          <Route path="/reportes"       element={<Reportes />} />
+          <Route path="/reporteFiltros" element={<ReporteFiltros />} />
+          <Route path="/perfil"         element={<Perfil usuario={usuarioActivo} />} />
+
+          {}
+          <Route path="/admin/users" element={
+            usuarioActivo.rol === 'admin'
+              ? <div><h2>👥 Gestión de Usuarios</h2><p>Sección exclusiva del administrador.</p></div>
+              : <Navigate to="/reportes" />
+          } />
+          <Route path="/invoices" element={
+            usuarioActivo.rol === 'admin'
+              ? <div><h2>🧾 Facturas</h2><p>Sección exclusiva del administrador.</p></div>
+              : <Navigate to="/reportes" />
+          } />
+        </Routes>
+      </MainLayout>
+    </BrowserRouter>
+  );
+};
+
+export default AppRuta;
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Reportes from '../paginas/Reportes';
+import ReporteFiltros from '../paginas/ReporteFiltros';
+import Perfil         from '../paginas/Perfil';
 import Gastos         from '../paginas/Gastos';
 import MainLayout     from '../componentes/MainLayout';
 

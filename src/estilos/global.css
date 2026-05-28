@@ -9,6 +9,8 @@
 }
 
 
+/* =========================================
+   RESET Y BASE
 * {
   box-sizing: border-box;
   margin: 0;
@@ -22,6 +24,8 @@ body {
 }
 
 
+/* =========================================
+   LAYOUT PRINCIPAL
 .main-layout {
   display: flex;
   flex-direction: column;
@@ -51,6 +55,8 @@ header h1 {
 }
 
 
+/* =========================================
+   SIDEBAR
 aside.sidebar {
   width: 230px;
   min-width: 230px;
@@ -103,6 +109,8 @@ aside.sidebar a:hover {
   gap: 0.5rem;
 }
 
+/* =========================================
+   TARJETA DE USUARIO (fondo del sidebar)
 .usuario-card {
   display: flex;
   align-items: center;
@@ -175,6 +183,9 @@ aside.sidebar a:hover {
 }
 
 
+
+/* =========================================
+   MAIN CONTENT
 main {
   flex: 1;
   padding: 2rem;
@@ -191,6 +202,8 @@ main {
 }
 
 
+/* =========================================
+   FOOTER
 footer {
   background-color: var(--color-secundario);
   padding: 0.8rem;
@@ -205,6 +218,8 @@ footer {
 }
 
 
+/* =========================================
+   TABLAS
 table {
   width: 100%;
   border-collapse: collapse;
@@ -240,6 +255,8 @@ tr:hover td {
 }
 
 
+/* =========================================
+   INPUTS Y BOTONES
 input[type="text"],
 input[type="date"],
 input[type="password"] {
@@ -282,6 +299,8 @@ button:hover {
   margin-bottom: 1rem;
 }
 
+/* =========================================
+   CARDS DE REPORTES (tarjetas de estadísticas)
 .stats-card {
   flex: 1;
   background-color: var(--color-blanco);
@@ -313,6 +332,13 @@ button:hover {
 .stats-card--amarillo{ border-left-color: #e0a800; }
 .stats-card--rojo    { border-left-color: #e07b39; }
 
+/* ── stats-row para alinear tarjetas ── */
+.stats-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 .stats-card .stats-sub,
 .stats-detalle {
   display: block;
@@ -323,6 +349,15 @@ button:hover {
 }
 
 
+
+/* ── Fila destacada tabla ── */
+.fila-destacada td {
+  background-color: #fff8e1;
+  font-weight: 600;
+}
+
+
+/* ── Barras de progreso ── */
 .barra-contenedor {
   display: flex;
   align-items: center;
@@ -437,6 +472,139 @@ button:hover {
 .btn-eliminar:hover {
   color: #e05252;
   background-color: #fff0f0;
+}
+
+
+.stats-card--verde {
+  border-left-color: #2b7a78;
+}
+
+.stats-card--amarillo {
+  border-left-color: #e0a800;
+}
+
+.stats-card--rojo {
+  border-left-color: #e07b39;
+}
+
+.stats-card .stats-sub {
+  display: block;
+  font-size: 0.75rem;
+  color: #777;
+  margin-top: 0.3rem;
+  font-weight: 400;
+}
+
+
+.recordatorio-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  background-color: #f0fafa;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #c8e8e6;
+}
+
+.recordatorio-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #d0eceb;
+  background-color: #f7fdfd;
+  transition: box-shadow 0.2s;
+}
+
+.recordatorio-card:hover {
+  box-shadow: 0 2px 8px rgba(58,175,169,0.15);
+}
+
+.recordatorio--vencido {
+  background-color: #fff5f5;
+  border-color: #f5c6c6;
+}
+
+.recordatorio--hoy {
+  background-color: #fff8ec;
+  border-color: #f5d89a;
+}
+
+.recordatorio--completado {
+  background-color: #f4f4f4;
+  border-color: #ddd;
+  opacity: 0.7;
+}
+
+.recordatorio-desc {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-texto);
+}
+
+.recordatorio--completado .recordatorio-desc {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.recordatorio-tag {
+  font-size: 0.75rem;
+  background-color: var(--color-hover);
+  color: var(--color-secundario);
+  padding: 0.15rem 0.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.recordatorio-fecha {
+  font-size: 0.78rem;
+  color: #888;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 20px;
+  letter-spacing: 0.4px;
+}
+
+.badge--rojo {
+  background-color: #fde8e8;
+  color: #c0392b;
+}
+
+.badge--naranja {
+  background-color: #fef3e2;
+  color: #d68910;
+}
+
+.badge--verde {
+  background-color: #e8f8f5;
+  color: #1e8449;
+}
+
+.btn-eliminar {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  transition: color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-eliminar:hover {
+  color: #e74c3c;
+  background-color: #fde8e8;
 }
 
 
@@ -567,6 +735,7 @@ button:hover {
   font-weight: 600;
   padding: 0.25rem 0.7rem;
   border-radius: 20px;
+  margin-left: 1rem;
   vertical-align: middle;
 }
 
@@ -580,4 +749,50 @@ button:hover {
   background-color: rgba(255,255,255,0.15);
   color: white;
   border: 1px solid rgba(255,255,255,0.3);
+}
+}
+
+
+.btn-logout {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 4px;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-logout:hover {
+  transform: scale(1.2);
+  background: none;
+}
+
+
+.sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.btn-cerrar-sesion {
+  width: 100%;
+  background-color: transparent;
+  color: var(--color-secundario);
+  border: 2px solid var(--color-secundario);
+  border-radius: 8px;
+  padding: 0.55rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.2s, color 0.2s;
+  text-align: center;
+}
+
+.btn-cerrar-sesion:hover {
+  background-color: var(--color-secundario);
+  color: white;
+}
 }

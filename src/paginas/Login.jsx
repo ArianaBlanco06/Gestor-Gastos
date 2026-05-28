@@ -13,6 +13,7 @@ const Login = ({ onLogin }) => {
     }
 
     // Buscar usuario con find (Higher Order Function vista en clase)
+   
     const encontrado = mockUsuarios.find(
       u => u.usuario === usuario && u.clave === clave
     );

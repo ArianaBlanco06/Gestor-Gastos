@@ -23,6 +23,10 @@ const MainLayout = ({ children, usuario = 'Usuario', rol = 'usuario', onLogout }
   const handleLogout = () => {
     onLogout();
   };
+    onLogout(); 
+  };
+const MainLayout = ({ children, usuario = "Juan Pérez" }) => {
+  const navigate = useNavigate();
 
   return (
     <div className="main-layout">
@@ -45,6 +49,34 @@ const MainLayout = ({ children, usuario = 'Usuario', rol = 'usuario', onLogout }
                   <Link to={item.ruta}>{item.icono} {item.label}</Link>
                 </li>
               ))}
+            </ul>
+          </nav>
+
+          <div className="sidebar-bottom">
+            {}
+            <div
+              className="usuario-card"
+              onClick={() => navigate('/perfil')}
+              title="Ver configuración de perfil"
+            >
+              <div className="usuario-avatar">
+                {usuario.charAt(0).toUpperCase()}
+              </div>
+              <div className="usuario-info">
+                <span className="usuario-nombre">{usuario}</span>
+                <span className="usuario-rol">⚙️ Ver perfil</span>
+              </div>
+            </div>
+
+            {}
+            <button className="btn-cerrar-sesion" onClick={handleLogout}>
+              🚪 Cerrar sesión
+            </button>
+              <li><Link to="/dashboard">📊 Dashboard</Link></li>
+              <li><Link to="/expenses">💸 Gastos</Link></li>
+              <li><Link to="/invoices">🧾 Facturas</Link></li>
+              <li><Link to="/reportes">📈 Reportes</Link></li>
+              <li><Link to="/reporteFiltros">🔍 Filtros</Link></li>
             </ul>
           </nav>
 
@@ -85,4 +117,5 @@ const MainLayout = ({ children, usuario = 'Usuario', rol = 'usuario', onLogout }
   );
 };
 
+export default MainLayout;
 export default MainLayout;
