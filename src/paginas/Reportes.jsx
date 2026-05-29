@@ -1,3 +1,4 @@
+import '../estilos/reportes.css';
 const Reportes = ({ expenses }) => {
   // --- Cálculos generales ---
   const totalGastos = expenses.reduce((acc, e) => acc + e.monto, 0);

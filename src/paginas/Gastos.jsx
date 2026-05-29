@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../estilos/gastos.css';
 
 const categoriasDisponibles = [
   'Alimentación',

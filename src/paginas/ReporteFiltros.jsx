@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../estilos/filtros.css';
 
 const ReporteFiltros = ({ expenses }) => {
   // ── Estados para filtros ──

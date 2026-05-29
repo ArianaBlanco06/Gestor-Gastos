@@ -1,0 +1,13 @@
+/* =========================================
+   REPORTES
+========================================= */
+.barra-contenedor { display: flex; align-items: center; gap: 0.5rem; width: 100%; }
+
+.barra-progreso {
+  height: 10px;
+  background-color: var(--color-principal);
+  border-radius: 5px;
+  min-width: 4px;
+}
+
+.barra-label { font-size: 0.8rem; color: var(--color-secundario); white-space: nowrap; }
