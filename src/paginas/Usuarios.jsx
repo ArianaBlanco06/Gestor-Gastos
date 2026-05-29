@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../estilos/usuarios.css';
 
 const Usuarios = ({ usuarios, setUsuarios }) => {
   const [busqueda, setBusqueda]   = useState('');
@@ -236,4 +237,3 @@ const Usuarios = ({ usuarios, setUsuarios }) => {
 };
 
 export default Usuarios;
-

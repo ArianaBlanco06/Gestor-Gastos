@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from 'react';
+import '../estilos/dashboard.css';
 import { Link } from "react-router-dom";
 
 
