@@ -8,9 +8,7 @@
   --color-sidebar: #f0fafa;
 }
 
-/* =========================================
-   RESET Y BASE
-========================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -23,9 +21,7 @@ body {
   color: var(--color-texto);
 }
 
-/* =========================================
-   LAYOUT PRINCIPAL
-========================================= */
+
 .main-layout {
   display: flex;
   flex-direction: column;
@@ -37,6 +33,9 @@ header {
   padding: 1rem 2rem;
   color: white;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 header h1 {
@@ -45,17 +44,13 @@ header h1 {
   letter-spacing: 0.5px;
 }
 
-/* Cuerpo: sidebar + main lado a lado */
 .layout-body {
   display: flex;
   flex: 1;
-  /* Dejamos espacio para el footer fixed */
   padding-bottom: 50px;
 }
 
-/* =========================================
-   SIDEBAR
-========================================= */
+
 aside.sidebar {
   width: 230px;
   min-width: 230px;
@@ -63,7 +58,7 @@ aside.sidebar {
   border-right: 1px solid #c8e8e6;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;  /* Nav arriba, usuario abajo */
+  justify-content: space-between;
   padding: 1.5rem 1rem;
 }
 
@@ -101,9 +96,13 @@ aside.sidebar a:hover {
   color: var(--color-secundario);
 }
 
-/* =========================================
-   TARJETA DE USUARIO (fondo del sidebar)
-========================================= */
+.sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
 .usuario-card {
   display: flex;
   align-items: center;
@@ -111,7 +110,6 @@ aside.sidebar a:hover {
   background-color: var(--color-secundario);
   border-radius: 10px;
   padding: 0.8rem;
-  margin-top: 1rem;
   cursor: pointer;
   transition: background 0.2s, transform 0.1s;
 }
@@ -156,9 +154,48 @@ aside.sidebar a:hover {
   font-size: 0.72rem;
 }
 
-/* =========================================
-   MAIN CONTENT
-========================================= */
+.btn-cerrar-sesion {
+  width: 100%;
+  background-color: transparent;
+  color: var(--color-secundario);
+  border: 2px solid var(--color-secundario);
+  border-radius: 8px;
+  padding: 0.55rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.2s, color 0.2s;
+  text-align: center;
+}
+
+.btn-cerrar-sesion:hover {
+  background-color: var(--color-secundario);
+  color: white;
+}
+
+
+.rol-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+  vertical-align: middle;
+}
+
+.rol-badge--admin {
+  background-color: rgba(255,255,255,0.25);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+.rol-badge--usuario {
+  background-color: rgba(255,255,255,0.15);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+
 main {
   flex: 1;
   padding: 2rem;
@@ -174,9 +211,7 @@ main {
   flex: 1;
 }
 
-/* =========================================
-   FOOTER
-========================================= */
+
 footer {
   background-color: var(--color-secundario);
   padding: 0.8rem;
@@ -190,9 +225,7 @@ footer {
   box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
 }
 
-/* =========================================
-   TABLAS
-========================================= */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -227,11 +260,11 @@ tr:hover td {
   transition: background 0.2s;
 }
 
-/* =========================================
-   INPUTS Y BOTONES
-========================================= */
+
 input[type="text"],
-input[type="date"] {
+input[type="date"],
+input[type="password"],
+select {
   padding: 0.45rem 0.7rem;
   border-radius: 6px;
   border: 1px solid #b2d8d8;
@@ -242,10 +275,12 @@ input[type="date"] {
   background-color: #f7fdfd;
 }
 
-input:focus {
+input:focus,
+select:focus {
   border-color: var(--color-principal);
   box-shadow: 0 0 0 3px rgba(58,175,169,0.2);
 }
+
 
 button {
   background-color: var(--color-principal);
@@ -263,9 +298,354 @@ button:hover {
   background-color: var(--color-secundario);
 }
 
+
+.btn-editar {
+  background: #2b7a78 !important;
+  color: white !important;
+  border: none;
+  border-radius: 6px;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.btn-editar:hover { background: #1f5c5a !important; }
+
+.btn-eliminar-gasto {
+  background: #d64550 !important;
+  color: white !important;
+  border: none;
+  border-radius: 6px;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.btn-eliminar-gasto:hover { background: #b03040 !important; }
+
+.btn-guardar {
+  background: #3aafa9 !important;
+  color: white !important;
+  border: none;
+  border-radius: 6px;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.btn-cancelar {
+  background: #7a7a7a !important;
+  color: white !important;
+  border: none;
+  border-radius: 6px;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.btn-agregar {
+  width: 140px;
+  display: inline-block;
+  font-weight: 700;
+}
+
+.btn-eliminar-recordatorio {
+  background: none !important;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.btn-eliminar-recordatorio:hover {
+  color: #e05252 !important;
+  background-color: #fff0f0 !important;
+}
+
+.btn-suspender {
+  background: #f4a261 !important;
+  color: white !important;
+  border: none;
+  border-radius: 6px;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.btn-suspender:hover { background: #e07b39 !important; }
+
+.btn-activar {
+  background: #52b788 !important;
+  color: white !important;
+  border: none;
+  border-radius: 6px;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.btn-activar:hover { background: #3a9668 !important; }
+
+
+.login-fondo {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #def2f1, #b2e4e2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(43,122,120,0.15);
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+}
+
+.login-header {
+  background: linear-gradient(135deg, var(--color-principal), var(--color-secundario));
+  padding: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.login-icono {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.login-titulo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: white;
+}
+
+.login-subtitulo {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.login-body {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.login-campo label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-texto);
+}
+
+.login-campo input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #c8e8e6;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: 0.2s;
+  box-sizing: border-box;
+}
+
+.login-campo input:focus {
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 3px rgba(58,175,169,0.2);
+}
+
+.login-campo-error {
+  color: #c0392b;
+  font-size: 0.78rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.login-error {
+  background-color: #fde8e8;
+  color: #c0392b;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  border-left: 3px solid #e74c3c;
+}
+
+.login-btn {
+  background: linear-gradient(135deg, var(--color-principal), var(--color-secundario));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+}
+
+.login-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.login-hint {
+  background-color: #f0fafa;
+  border: 1px dashed #b2d8d8;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font-size: 0.78rem;
+  color: #555;
+  line-height: 1.7;
+}
+
+.login-hint p { margin: 0; }
+
+.login-link {
+  color: var(--color-principal);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.login-link:hover { color: var(--color-secundario); }
+
+/* ── Fortaleza de contraseña ── */
+.fuerza-contenedor {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.fuerza-barra {
+  height: 6px;
+  border-radius: 4px;
+  flex: 1;
+  transition: background 0.3s;
+}
+
+.fuerza-debil  { background-color: #e05252; }
+.fuerza-media  { background-color: #f4a261; }
+.fuerza-fuerte { background-color: #52b788; }
+
+.fuerza-texto {
+  font-size: 0.75rem;
+  font-weight: 700;
+  min-width: 40px;
+}
+
+
+.gastos-page h2 {
+  margin-bottom: 1.3rem;
+  font-size: 1.7rem;
+  letter-spacing: 0.2px;
+}
+
+.gastos-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(620px, 2.2fr);
+  gap: 2rem;
+}
+
+.gastos-formulario {
+  background-color: #f7fdfd;
+  border: 1px solid #d3edec;
+  border-radius: 16px;
+  padding: 1.4rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+
+.gastos-formulario label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--color-texto);
+}
+
+.gastos-formulario label span {
+  display: block;
+  margin-bottom: 0.45rem;
+}
+
+.gastos-fila {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.gastos-fila label { flex: 1; }
+
+.gastos-error {
+  color: #b00020;
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+}
+
+.gastos-tabla-contenedor {
+  display: flex;
+  flex-direction: column;
+}
+
+.gastos-tabla-contenedor h3 { margin-bottom: 1rem; }
+
+.tabla-scroll {
+  height: 540px;
+  max-height: 540px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 12px;
+  border: 1px solid #d8eeec;
+  background-color: #f9fefc;
+}
+
+.tabla-scroll table {
+  width: 100%;
+  min-width: auto;
+  table-layout: fixed;
+  border-spacing: 0;
+}
+
+.tabla-scroll th,
+.tabla-scroll td { overflow-wrap: anywhere; }
+
+.tabla-scroll::-webkit-scrollbar { width: 10px; }
+.tabla-scroll::-webkit-scrollbar-track { background: #e6f2f1; border-radius: 999px; }
+.tabla-scroll::-webkit-scrollbar-thumb { background: #3aafa9; border-radius: 999px; }
+.tabla-scroll::-webkit-scrollbar-thumb:hover { background: #2b7a78; }
+
+.gastos-tabla-contenedor table th,
+.gastos-tabla-contenedor table td { white-space: normal; word-break: break-word; }
+
+.acciones-col { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+.acciones-col button { min-width: 75px; }
+.gastos-tabla-contenedor table { font-size: 0.88rem; }
+.fila-editando td { background-color: #f4faf9; }
+
 /* =========================================
-   CARDS DE REPORTES (tarjetas de estadísticas)
+   STATS CARDS — reportes
 ========================================= */
+.stats-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 .stats-card {
   flex: 1;
   background-color: var(--color-blanco);
@@ -290,13 +670,6 @@ button:hover {
   color: var(--color-texto);
 }
 
-/* ── stats-row para alinear tarjetas ── */
-.stats-row {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
 .stats-detalle {
   font-size: 0.78rem;
   color: #888;
@@ -308,34 +681,14 @@ button:hover {
 .stats-card--min { border-left-color: #52b788; }
 .stats-card--top { border-left-color: #f4a261; }
 
-/* ── Fila destacada tabla ── */
-.fila-destacada td {
-  background-color: #fff8e1;
-  font-weight: 600;
-}
+.fila-destacada td { background-color: #fff8e1; font-weight: 600; }
 
-/* ── Barras de progreso ── */
-.barra-contenedor {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: 100%;
-}
 
-.barra-progreso {
-  height: 10px;
-  background-color: var(--color-principal);
-  border-radius: 5px;
-  min-width: 4px;
-}
+.barra-contenedor { display: flex; align-items: center; gap: 0.5rem; width: 100%; }
+.barra-progreso { height: 10px; background-color: var(--color-principal); border-radius: 5px; min-width: 4px; }
+.barra-label { font-size: 0.8rem; color: var(--color-secundario); white-space: nowrap; }
 
-.barra-label {
-  font-size: 0.8rem;
-  color: var(--color-secundario);
-  white-space: nowrap;
-}
 
-/* ── Recordatorios ── */
 .recordatorio-form {
   display: flex;
   flex-wrap: wrap;
@@ -358,32 +711,12 @@ button:hover {
   box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 
-.recordatorio-completado {
-  opacity: 0.55;
-  border-left-color: #aaa;
-}
+.recordatorio-completado { opacity: 0.55; border-left-color: #aaa; }
+.recordatorio-completado .recordatorio-desc { text-decoration: line-through; color: #aaa; }
+.recordatorio-vencido { border-left-color: #e05252; background-color: #fff5f5; }
 
-.recordatorio-completado .recordatorio-desc {
-  text-decoration: line-through;
-  color: #aaa;
-}
-
-.recordatorio-vencido {
-  border-left-color: #e05252;
-  background-color: #fff5f5;
-}
-
-.recordatorio-texto {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.recordatorio-desc {
-  font-weight: 600;
-  font-size: 0.9rem;
-}
+.recordatorio-texto { flex: 1; display: flex; flex-direction: column; gap: 0.2rem; }
+.recordatorio-desc { font-weight: 600; font-size: 0.9rem; }
 
 .recordatorio-cat {
   font-size: 0.75rem;
@@ -404,29 +737,37 @@ button:hover {
   white-space: nowrap;
 }
 
-.badge-vencido {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #e05252;
+.badge-vencido { font-size: 0.72rem; font-weight: 700; color: #e05252; }
+
+
+.usuarios-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  align-items: start;
 }
 
-.btn-eliminar {
-  background: none;
-  border: none;
-  color: #ccc;
-  cursor: pointer;
+.usuarios-formulario {
+  background-color: #f7fdfd;
+  border: 1px solid #d3edec;
+  border-radius: 16px;
+  padding: 1.4rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.usuarios-formulario h3 {
+  margin-bottom: 1rem;
   font-size: 1rem;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
+  color: var(--color-secundario);
 }
 
-<<<<<<< Updated upstream
 .btn-eliminar:hover {
   color: #e05252;
   background-color: #fff0f0;
 }
-=======
 .form-grupo {
   display: flex;
   flex-direction: column;
@@ -467,9 +808,6 @@ button:hover {
 .fila-suspendida td { opacity: 0.55; background-color: #fafafa; }
 
 
-/* =========================================
-   DASHBOARD
-========================================= */
 
 .dashboard-container {
   display: flex;
@@ -521,9 +859,7 @@ button:hover {
   font-weight: 600;
 }
 
-/* =========================================
-   KPIS
-========================================= */
+
 
 .kpis-grid {
   display: grid;
@@ -560,9 +896,7 @@ button:hover {
   font-size: 0.9rem;
 }
 
-/* =========================================
-   TARJETAS GENERALES
-========================================= */
+
 
 .dashboard-card {
   background-color: white;
@@ -576,9 +910,7 @@ button:hover {
   color: var(--color-secundario);
 }
 
-/* =========================================
-   SEMÁFORO
-========================================= */
+
 
 .barra-container {
   width: 100%;
@@ -604,9 +936,7 @@ button:hover {
   color: #666;
 }
 
-/* =========================================
-   GRID 2 COLUMNAS
-========================================= */
+
 
 .dashboard-grid-2 {
   display: grid;
@@ -614,9 +944,7 @@ button:hover {
   gap: 1.5rem;
 }
 
-/* =========================================
-   META MENSUAL
-========================================= */
+
 
 .meta-input {
   width: 100%;
@@ -634,9 +962,7 @@ button:hover {
   gap: 0.7rem;
 }
 
-/* =========================================
-   ACTIVIDAD RECIENTE
-========================================= */
+
 
 .actividad-lista {
   display: flex;
@@ -679,9 +1005,7 @@ button:hover {
   border-left-color: #f59e0b;
 }
 
-/* =========================================
-   RECOMENDACIONES
-========================================= */
+
 
 .recomendaciones-grid {
   display: flex;
@@ -710,9 +1034,7 @@ button:hover {
   font-size: 1.5rem;
 }
 
-/* =========================================
-   CATEGORÍAS
-========================================= */
+
 
 .categorias-lista {
   display: flex;
@@ -757,9 +1079,7 @@ button:hover {
   color: #555;
 }
 
-/* =========================================
-   ACCIONES
-========================================= */
+
 
 .acciones-grid {
   display: flex;
@@ -789,9 +1109,7 @@ button:hover {
   opacity: 0.95;
 }
 
-/* =========================================
-   RESPONSIVE
-========================================= */
+
 
 @media (max-width: 900px) {
   .dashboard-grid-2 {
@@ -817,4 +1135,4 @@ button:hover {
     flex-direction: column;
   }
 }
->>>>>>> Stashed changes
+
