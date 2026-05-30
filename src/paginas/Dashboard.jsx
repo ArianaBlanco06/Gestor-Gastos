@@ -3,8 +3,7 @@ import '../estilos/dashboard.css';
 import { Link } from "react-router-dom";
 
 
-const Dashboard = ({ expenses }) => {
-  const [metaMensual, setMetaMensual] = useState(500);
+const Dashboard = ({ expenses, metaMensual, setMetaMensual }) => {
 
   // =========================
   // FECHA ACTUAL
@@ -275,10 +274,14 @@ const Dashboard = ({ expenses }) => {
           <label>¿Cuál es tu presupuesto máximo este mes?</label>
 
           <input
-            type="number"
+            type="text"
             className="meta-input"
-            value={metaMensual}
-            onChange={(e) => setMetaMensual(Number(e.target.value))}
+            value={metaMensual === 0 ? '' : metaMensual}
+            placeholder="Ej: 500"
+            onChange={(e) => {
+              const val = e.target.value.replace(/[^0-9]/g, '');
+              setMetaMensual(val === '' ? 0 : Number(val));
+            }}
           />
 
           <div className="meta-info">
