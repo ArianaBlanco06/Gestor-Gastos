@@ -32,38 +32,21 @@ const guardar = (clave, valor) => {
 const AppRuta = () => {
   const [usuarioActivo, setUsuarioActivo] = useState(null);
 
-  // ── Estados con localStorage ──
-  const [usuarios, setUsuariosState] = useState(() => cargar('usuarios', mockUsuarios));
+  const [usuarios, setUsuariosState]     = useState(() => cargar('usuarios', mockUsuarios));
   const [categorias, setCategoriasState] = useState(() => cargar('categorias', mockCategorias));
-  const [facturas, setFacturasState] = useState(() => cargar('facturas', mockFacturas));
-  const [expenses, setExpensesState] = useState(() =>
+  const [facturas, setFacturasState]     = useState(() => cargar('facturas', mockFacturas));
+  const [expenses, setExpensesState]     = useState(() =>
     cargar('expenses', mockExpenses.map(e => ({ ...e, usuarioId: 1 })))
   );
+  // ── Meta mensual global compartida entre Dashboard y Reportes ──
+  const [metaMensual, setMetaMensualState] = useState(() => cargar('metaMensual', 500));
 
-  // ── Wrappers que guardan en localStorage al actualizar ──
-  const setUsuarios = (valor) => {
-    const nuevo = typeof valor === 'function' ? valor(usuarios) : valor;
-    setUsuariosState(nuevo);
-    guardar('usuarios', nuevo);
-  };
-
-  const setCategorias = (valor) => {
-    const nuevo = typeof valor === 'function' ? valor(categorias) : valor;
-    setCategoriasState(nuevo);
-    guardar('categorias', nuevo);
-  };
-
-  const setFacturas = (valor) => {
-    const nuevo = typeof valor === 'function' ? valor(facturas) : valor;
-    setFacturasState(nuevo);
-    guardar('facturas', nuevo);
-  };
-
-  const setExpenses = (valor) => {
-    const nuevo = typeof valor === 'function' ? valor(expenses) : valor;
-    setExpensesState(nuevo);
-    guardar('expenses', nuevo);
-  };
+  // ── Wrappers con localStorage ──
+  const setUsuarios   = (v) => { const n = typeof v === 'function' ? v(usuarios)   : v; setUsuariosState(n);   guardar('usuarios', n);   };
+  const setCategorias = (v) => { const n = typeof v === 'function' ? v(categorias) : v; setCategoriasState(n); guardar('categorias', n); };
+  const setFacturas   = (v) => { const n = typeof v === 'function' ? v(facturas)   : v; setFacturasState(n);   guardar('facturas', n);   };
+  const setExpenses   = (v) => { const n = typeof v === 'function' ? v(expenses)   : v; setExpensesState(n);   guardar('expenses', n);   };
+  const setMetaMensual = (v) => { const n = typeof v === 'function' ? v(metaMensual) : v; setMetaMensualState(n); guardar('metaMensual', n); };
 
   // ── Gastos filtrados por usuario activo ──
   const misGastos = usuarioActivo
@@ -72,10 +55,10 @@ const AppRuta = () => {
 
   const setMisGastos = (fn) => {
     setExpenses(prev => {
-      const otrosGastos      = prev.filter(e => e.usuarioId !== usuarioActivo.id);
-      const gastosActuales   = prev.filter(e => e.usuarioId === usuarioActivo.id);
+      const otrosGastos        = prev.filter(e => e.usuarioId !== usuarioActivo.id);
+      const gastosActuales     = prev.filter(e => e.usuarioId === usuarioActivo.id);
       const gastosActualizados = typeof fn === 'function' ? fn(gastosActuales) : fn;
-      const gastosConId      = gastosActualizados.map(e => ({ ...e, usuarioId: usuarioActivo.id }));
+      const gastosConId        = gastosActualizados.map(e => ({ ...e, usuarioId: usuarioActivo.id }));
       return [...otrosGastos, ...gastosConId];
     });
   };
@@ -98,9 +81,15 @@ const AppRuta = () => {
         onLogout={() => setUsuarioActivo(null)}
       >
         <Routes>
-          <Route path="/"               element={<Navigate to="/dashboard" />} />
-          <Route path="/dashboard"      element={<Dashboard expenses={misGastos} />} />
-          <Route path="/expenses"       element={
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/dashboard" element={
+            <Dashboard
+              expenses={misGastos}
+              metaMensual={metaMensual}
+              setMetaMensual={setMetaMensual}
+            />
+          } />
+          <Route path="/expenses" element={
             <Gastos
               expenses={misGastos}
               setExpenses={setMisGastos}
@@ -108,24 +97,24 @@ const AppRuta = () => {
               setCategorias={setCategorias}
             />
           } />
-          <Route path="/reportes"       element={<Reportes expenses={misGastos} />} />
+          <Route path="/reportes" element={
+            <Reportes
+              expenses={misGastos}
+              metaMensual={metaMensual}
+              setMetaMensual={setMetaMensual}
+            />
+          } />
           <Route path="/reporteFiltros" element={<ReporteFiltros expenses={misGastos} />} />
-          <Route path="/perfil"         element={
+          <Route path="/perfil" element={
             <Perfil
               usuario={usuarioActivo}
               usuarios={usuarios}
               setUsuarios={setUsuarios}
             />
           } />
-
           <Route path="/invoices" element={
             usuarioActivo.rol === 'admin'
-              ? <Facturas
-                  facturas={facturas}
-                  setFacturas={setFacturas}
-                  categorias={categorias}
-                  setCategorias={setCategorias}
-                />
+              ? <Facturas facturas={facturas} setFacturas={setFacturas} categorias={categorias} setCategorias={setCategorias} />
               : <Navigate to="/dashboard" />
           } />
           <Route path="/admin/users" element={

@@ -6,4 +6,5 @@ export const mockCategorias = [
   'Educación',
   'Salud',
   'Entretenimiento',
+  'Vestimenta'
 ];
